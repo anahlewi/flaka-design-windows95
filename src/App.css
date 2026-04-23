@@ -1,4 +1,11 @@
-.App {
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -12,8 +19,17 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+} */
 
-.App-header {
+
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -26,7 +42,36 @@
 
 .App-link {
   color: #61dafb;
+} */
+
+.desktop-icons {
+  width: 70px;
+  height: 70px;
+  margin: 4px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  user-select: none;
 }
+
+.desktop-icons p {
+  margin-top: -0.5em;
+  text-align: center;
+}
+
+.active-icon {
+  background: rgba(12, 0, 120, 0.6);
+  border: 1px white dotted;
+}
+
+.inactive-icon {
+  text-decoration: none;
+}
+
+.r95_lcz1rw2 {
+  flex-direction: row !important;
+}
+
 
 @keyframes App-logo-spin {
   from {
