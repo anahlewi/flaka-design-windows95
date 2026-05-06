@@ -73,6 +73,28 @@ body {
 }
 
 
+.photo-folder-container {
+  flex-direction: row;
+}
+
+@media (max-width: 600px) {
+  .photo-folder-container {
+    flex-direction: column;
+  }
+
+  .photo-folder-container > :first-child {
+    flex: 0 0 auto !important;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  .photo-folder-container > :last-child {
+    flex: 1 1 auto !important;
+    min-height: 200px;
+    width: 100% !important;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

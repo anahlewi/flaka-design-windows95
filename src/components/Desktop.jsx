@@ -1,7 +1,9 @@
 import '@react95/core/GlobalStyle';
 import '@react95/core/themes/win95.css';
 import { Alert, List, Modal, TaskBar, TitleBar } from '@react95/core';
+import { useState } from 'react';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
+import terminalIcon from '../assets/terminal-72.png';
 import '../App.css';
 import {
   ReaderClosed,
@@ -22,23 +24,37 @@ import { ClippyProvider } from '@react95/clippy';
 import { useModalManager } from '../hooks/useModalManager';
 import { DesktopTaskBar } from './DesktopTaskBar';  
 import { DesktopModal } from './DesktopModal';
+import { DesktopAlert } from './DesktopAlert';
+import { useWebcam, WebcamModal } from './WebcamModal';
 
 const MODAL_IDS = {
   NOTES: 'notes',
   PAINT: 'paint',
-  CODING: 'coding',
-  ARTS: 'arts',
+  ARCHIVES: 'archives',
   RESUME: 'resume',
   CONTACT: 'contact',
   GALAXY: 'galaxy',
   MUSIC: 'music',
+  TERMINAL: 'terminal',
 };
 
 function Desktop(){
     const { toggleModal, isModalOpen, closeModal } = useModalManager();
-    
-    const closeAlert = () => {
-      // Handle alert close action
+
+    const { webcamOpen, webcamStream, openWebcam, closeWebcam } = useWebcam();
+
+    const [alerts, setAlerts] = useState({
+      emotionalCheckin: true,
+      hyperSurveillance: true,
+      leavingSite: false,
+    });
+
+    const closeAlert = (key) => setAlerts(prev => ({ ...prev, [key]: false }));
+    const openLeavingSiteAlert = () => setAlerts(prev => ({ ...prev, leavingSite: true }));
+
+    const confirmLeavingSite = () => {
+      closeAlert('leavingSite');
+      window.open('https://work-in-progress-blog.vercel.app/', '_blank');
     };
 
     return (
@@ -66,82 +82,94 @@ function Desktop(){
 
       {/* Desktop Icons */}
       <div className="desktop-icons">
-        <div onDoubleClick={() => toggleModal(MODAL_IDS.NOTES)}>
+        <div onDoubleClick={openLeavingSiteAlert}>
           <FilePencil variant="32x32_4" />
-          <p>Notes</p>
+          <p>note</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.PAINT)}>
           <Pbrush1 variant="32x32_4" />
-          <p>Paint</p>
+          <p>paint</p>
         </div>
-        <div onDoubleClick={() => toggleModal(MODAL_IDS.CODING)}>
-          <MsawtAwtIcon variant="32x32_4" />
-          <p>Coding</p>
-        </div>
-        <div onDoubleClick={() => toggleModal(MODAL_IDS.ARTS)}>
-          <img src={cameraDesktopIcon} alt="Arts & Crafts" width={32} height={32} />
-          <p>Archives</p>
+        <div onDoubleClick={() => toggleModal(MODAL_IDS.ARCHIVES)}>
+          <img src={cameraDesktopIcon} alt="Archives" width={32} height={32} />
+          <p>archives</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.RESUME)}>
           <Wordpad variant="32x32_4" />
-          <p>Resume</p>
+          <p>resume</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.CONTACT)}>
           <Awfxcg321304 variant="32x32_4" />
-          <p>Contact</p>
+          <p>contact</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.GALAXY)}>
           <FlyingThroughSpace100 variant="32x32_4" />
-          <p>Galaxy</p>
+          <p>galaxy</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.MUSIC)}>
           <CdMusic variant="32x32_4" />
-          <p>Music</p>
+          <p>dj annita</p>
+        </div>
+        <div onDoubleClick={() => toggleModal(MODAL_IDS.TERMINAL)}>
+          <img src={terminalIcon} alt="Terminal" width={32} height={32} />
+          <p>terminal</p>
         </div>
       </div>
-      <Alert 
-        title="emotional check-in" 
-        type="warning" 
-        message="Warning: do you feel like you have agency?" 
-        titleBarOptions={[
-          <TitleBar.Help
-            key="help"
-            onClick={() => window.open('https://en.wikipedia.org/wiki/Emotional_intelligence', '_blank')}
-          />,
-          <TitleBar.Close key="close" onClick={closeAlert} />,
-        ]}
-        buttons={[
-           {
-          value: 'Yes',
-          onClick: closeAlert
-          },
-          {
-          value: 'No',
-          onClick: closeAlert
-          }
-        ]} 
-      />
-      <Alert 
-        title="hyper-surveillance" 
-        type="error" 
-        message="critical error: I can't see you, can I see you?" 
-        titleBarOptions={[
-          <TitleBar.Help
-            key="help"
-          />,
-          <TitleBar.Close key="close" onClick={closeAlert} />,
-        ]}
-        buttons={[
-           {
-          value: 'Yes',
-          onClick: closeAlert
-          },
-          {
-          value: 'No',
-          onClick: closeAlert
-          }
-        ]} 
-      />
+      {alerts.leavingSite && (
+        <DesktopAlert
+          title="navigation"
+          type="warning"
+          message="you're about to leave this site. continue?"
+          position={{ x: Math.floor(window.innerWidth / 2) - 190, y: Math.floor(window.innerHeight / 2) - 90 }}
+          onHelp={null}
+          onClose={() => closeAlert('leavingSite')}
+          buttons={[
+            { label: 'Yes', onClick: confirmLeavingSite },
+            { label: 'No', onClick: () => closeAlert('leavingSite') },
+          ]}
+        />
+      )}
+      {alerts.leavingSite && (
+        <DesktopAlert
+          title="navigation"
+          type="warning"
+          message="you're about to leave this site. continue?"
+          position={{ x: Math.floor(window.innerWidth / 2) - 190, y: Math.floor(window.innerHeight / 2) - 90 }}
+          onHelp={null}
+          onClose={() => closeAlert('leavingSite')}
+          buttons={[
+            { label: 'Yes', onClick: confirmLeavingSite },
+            { label: 'No', onClick: () => closeAlert('leavingSite') },
+          ]}
+        />
+      )}
+      {alerts.emotionalCheckin && (
+        <DesktopAlert
+          title="emotional check-in"
+          type="warning"
+          message="Warning: do you feel like you have agency?"
+          position={{ x: 400, y: 100 }}
+          onHelp={() => window.open('https://en.wikipedia.org/wiki/Emotional_intelligence', '_blank')}
+          onClose={() => closeAlert('emotionalCheckin')}
+          buttons={[
+            { label: 'Yes', onClick: () => closeAlert('emotionalCheckin') },
+            { label: 'No', onClick: () => closeAlert('emotionalCheckin') },
+          ]}
+        />
+      )}
+      {alerts.hyperSurveillance && (
+        <DesktopAlert
+          title="hyper-surveillance"
+          type="error"
+          message="critical error: I can't see you, can I see you?"
+          position={{ x: 300, y: 500 }}
+          onClose={() => closeAlert('hyperSurveillance')}
+          buttons={[
+            { label: 'Yes', onClick: openWebcam },
+            { label: 'No', onClick: () => closeAlert('hyperSurveillance') },
+          ]}
+        />
+      )}
       {/* Render all modals based on open state */}
       <DesktopModal
         isOpen={isModalOpen(MODAL_IDS.NOTES)}
@@ -154,14 +182,9 @@ function Desktop(){
         onClose={() => closeModal(MODAL_IDS.PAINT)}
       />
       <DesktopModal
-        isOpen={isModalOpen(MODAL_IDS.CODING)}
-        modalId={MODAL_IDS.CODING}
-        onClose={() => closeModal(MODAL_IDS.CODING)}
-      />
-      <DesktopModal
-        isOpen={isModalOpen(MODAL_IDS.ARTS)}
-        modalId={MODAL_IDS.ARTS}
-        onClose={() => closeModal(MODAL_IDS.ARTS)}
+        isOpen={isModalOpen(MODAL_IDS.ARCHIVES)}
+        modalId={MODAL_IDS.ARCHIVES}
+        onClose={() => closeModal(MODAL_IDS.ARCHIVES)}
       />
       <DesktopModal
         isOpen={isModalOpen(MODAL_IDS.RESUME)}
@@ -183,7 +206,17 @@ function Desktop(){
         modalId={MODAL_IDS.MUSIC}
         onClose={() => closeModal(MODAL_IDS.MUSIC)}
       />
+      <DesktopModal
+        isOpen={isModalOpen(MODAL_IDS.TERMINAL)}
+        modalId={MODAL_IDS.TERMINAL}
+        onClose={() => closeModal(MODAL_IDS.TERMINAL)}
+      />
 
+      <WebcamModal
+        webcamOpen={webcamOpen}
+        webcamStream={webcamStream}
+        onClose={closeWebcam}
+      />
       </ClippyProvider>
   );
 }

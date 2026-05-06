@@ -26,19 +26,19 @@ const PhotoFolder = () => {
       label: '• tokyo •',
       children: [
         {id: 'tokyo-0', label: 'Fits', children: [
-           {id: 'fits-1', label: 'FIT_001.jpg', onClick: () => alert('Clicked FIT_001.jpg')  },
-           {id: 'fits-2', label: 'FIT_002.jpg' },
+           {id: 'fits-1', label: 'FIT_001.jpg', onClick: () => handleSelect('fits-1', 'https://cdn.cosmos.so/24a88717-7fd1-4f0d-84ae-40351a0aafc8?format=jpeg') },
+           {id: 'fits-2', label: 'FIT_002.jpg', onClick: () => handleSelect('fits-2', 'https://cdn.cosmos.so/9a7b9a3c-f64d-4802-8c04-e6966ae9f1cc?format=jpeg') },
          ]},
-        { id: 'tokyo-1', label: 'TOKYO_001.jpg' },
-        { id: 'tokyo-2', label: 'TOKYO_002.jpg' },
+        { id: 'tokyo-1', label: 'TOKYO_001.jpg', onClick: () => handleSelect('tokyo-1', 'https://cdn.cosmos.so/dd756f09-ae55-4954-b883-4b7cb09ef85e?format=jpeg') },
+        { id: 'tokyo-2', label: 'TOKYO_002.jpg', onClick: () => handleSelect('tokyo-2', 'https://cdn.cosmos.so/e53d7caa-4e53-4181-b07f-69d2e07807e2?format=jpeg')  },
       ],
     },
     {
       id: 'wellesley',
       label: '• wellesley •',
       children: [
-        { id: 'hp5-1', label: 'BW_001.jpg' },
-        { id: 'hp5-2', label: 'BW_002.jpg' },
+        { id: 'hp5-1', label: 'BW_001.jpg', onClick: () => handleSelect('hp5-1', 'https://cdn.cosmos.so/10fe3a61-d161-4fc2-8620-0e64ae2bdd68?format=jpeg') },
+        { id: 'hp5-2', label: 'BW_002.jpg', onClick: () => handleSelect('hp5-2', 'https://cdn.cosmos.so/e3602b4f-83f8-4e9e-8ea3-e5bb962bb9f7?format=jpeg') },
       ],
     },
     {
@@ -52,16 +52,14 @@ const PhotoFolder = () => {
   ];
 
   return (
-    <div style={{ 
+    <div className="photo-folder-container" style={{ 
       padding: '10px', 
       backgroundColor: '#c0c0c0',
       display: 'flex',
-      flexDirection: 'row',
       width: '100%',
       height: '100%', 
-      // border: '2px solid',
-      // borderColor: '#dfdfdf #808080 #808080 #dfdfdf',
       fontFamily: 'MS Sans Serif, Arial',
+      boxSizing: 'border-box',
     }}>
       <div style={{ marginBottom: '10px', flex: '1 1 200px ' }}>
         <h3 style={{ margin: '0 0 10px 0', fontSize: '14px'}}>archives</h3>

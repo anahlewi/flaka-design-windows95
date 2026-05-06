@@ -3,7 +3,10 @@ import { P5Canvas } from "@p5-wrapper/react";
 import beachPhoto from '../processing-projects/photo-animaton.jsx';
 import starsSimulation from '../processing-projects/stars-simulation.jsx';
 import { FilePencil, Pbrush1, MsawtAwtIcon, Progman11, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
+import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
+import terminalIcon from '../assets/terminal-72.png';
 import PhotoFolder from './PhotoFolder.jsx';
+import Resume from './Resume.jsx';
 
 /**
  * Reusable modal component for desktop windows
@@ -20,32 +23,32 @@ export const DesktopModal = ({
   // Define modal configurations by type
   const modalConfigs = {
     notes: {
-      title: 'Notes',
+      title: 'notes',
       icon: <FilePencil />,
       content: <div style={{ padding: '20px' }}>📝 Notes content goes here</div>,
     },
     paint: {
-      title: 'Paint',
+      title: 'paint',
       icon: <Pbrush1 />,
-      content: <div style={{ padding: '20px' }}>🎨 Paint editor goes here</div>,
+      content: <iframe
+        src="https://paint.js.org/"
+        title="Paint"
+        style={{ width: '100%', height: '100%', minHeight: '500px', border: 'none', display: 'block' }}
+        allowFullScreen
+      />,
     },
-    coding: {
-      title: 'Coding',
-      icon: <MsawtAwtIcon />,
-      content: <div style={{ padding: '20px' }}>💻 Coding projects go here</div>,
-    },
-    arts: {
-      title: 'Arts & Crafts',
-      icon: <Progman11 />,
+    archives: {
+      title: 'archives',
+      icon: <img src={cameraDesktopIcon} alt="Archives" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
       content: <PhotoFolder />,
     },
     resume: {
-      title: 'Resume',
+      title: 'resume',
       icon: <Wordpad />,
-      content: <div style={{ padding: '20px' }}>📄 Resume content goes here</div>,
+      content: <Resume />,
     },
     contact: {
-      title: 'Contact',
+      title: 'contact',
       icon: <Awfxcg321304 />,
       content: <Tabs width="350px" defaultActiveTab="Compatibility">
       <Tab title="General">
@@ -136,28 +139,47 @@ export const DesktopModal = ({
     </Tabs>,
     },
     galaxy: {
-      title: 'Galaxy',
+      title: 'galaxy',
       icon: <FlyingThroughSpace100 />,
       content: <P5Canvas sketch={starsSimulation} />,
     },
     music: {
-      title: 'Music',
+      title: 'dj annita',
       icon: <CdMusic />,
       content: <iframe data-testid="embed-iframe" title="7/10" style={{ borderRadius: '12px' }} src="https://open.spotify.com/embed/playlist/7AFtPXHSyqhQB9E31SeaHg?utm_source=generator" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>,
+    },
+    terminal: {
+      title: 'terminal',
+      icon: <img src={terminalIcon} alt="Terminal" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
+      content: <iframe
+        src="https://anahlewi.github.io/personal-website-term/"
+        title="Terminal"
+        style={{ width: '100%', height: '100%', minHeight: '500px', border: 'none', display: 'block' }}
+        allowFullScreen
+      />,
     },
   };
 
   const config = modalConfigs[modalId] || {
-    title: 'Window',
+    title: 'window',
     icon: <FilePencil />,
     content: <div>Content not found</div>,
   };
 
+  const isFullScreen = ['archives', 'paint', 'terminal'].includes(modalId);
+
   return (
     <Modal
-      width="auto"
-      height="auto"
-      style={{
+      width={isFullScreen ? '100vw' : 'auto'}
+      height={isFullScreen ? '100vh' : 'auto'}
+      style={isFullScreen ? {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        margin: 0,
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+      } : {
         minWidth: '300px',
         maxWidth: '80vw',
         minHeight: '150px',
@@ -166,7 +188,7 @@ export const DesktopModal = ({
       icon={config.icon}
       title={config.title}
       dragOptions={{
-        defaultPosition,
+        defaultPosition: isFullScreen ? { x: 0, y: 0 } : defaultPosition,
       }}
       titleBarOptions={[
         <Modal.Minimize key="minimize" />,
@@ -179,7 +201,7 @@ export const DesktopModal = ({
         <TitleBar.Close key="close" onClick={onClose} />,
       ]}
     >
-      <div style={{ overflow: 'auto', maxHeight: 'calc(80vh - 100px)' }}>
+      <div style={{ overflow: 'auto', height: isFullScreen ? 'calc(100vh - 60px)' : undefined, maxHeight: isFullScreen ? undefined : 'calc(80vh - 100px)' }}>
         {config.content}
       </div>
     </Modal>
