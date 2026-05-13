@@ -5,8 +5,10 @@ import starsSimulation from '../processing-projects/stars-simulation.jsx';
 import { FilePencil, Pbrush1, MsawtAwtIcon, Progman11, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
+import crystalBallIcon from '../assets/crystal_ball.png';
 import PhotoFolder from './PhotoFolder.jsx';
 import Resume from './Resume.jsx';
+import TarotDraw from './TarotDraw.jsx';
 
 /**
  * Reusable modal component for desktop windows
@@ -50,91 +52,45 @@ export const DesktopModal = ({
     contact: {
       title: 'contact',
       icon: <Awfxcg321304 />,
-      content: <Tabs width="350px" defaultActiveTab="Compatibility">
-      <Tab title="General">
-        <Fieldset legend="Logon validation" style={{
-        marginBottom: '1em'
-      }}>
-          <Checkbox readOnly checked>
-            Log on to Windows NT domain
-          </Checkbox>
-          <br />
-          <p style={{
-          marginLeft: 22,
-          marginTop: 4
-        }}>
-            When you log on, your password will be verified in a Windows NT
-            domain.
+      content: <Tabs width="350px" defaultActiveTab="About">
+      <Tab title="About">
+        <div style={{ padding: '10px', fontSize: '14px', lineHeight: '1.6' }}>
+          <p style={{ marginTop: 0, fontWeight: 'bold' }}>
+            Welcome to my Windows 95 Portfolio
           </p>
-          <p style={{
-          marginBottom: 4,
-          marginLeft: 22
-        }}>Windows NT domain:</p>
-          <Input style={{
-          width: 180,
-          marginLeft: 22
-        }} />
-        </Fieldset>
-
-        <Fieldset legend="Network logon options">
-          <Checkbox>Quick logon</Checkbox>
-          <p style={{
-          marginBottom: 4,
-          marginLeft: 22,
-          marginTop: 4
-        }}>
-            Windows logs you onto the network, but network drives are not
-            reconnected until you use them.
+          <p>
+            This nostalgic desktop environment recreates the classic Windows 95 experience while showcasing my projects and skills. Navigate through the desktop to explore my work, resume, and creative projects.
           </p>
-          <Checkbox>Logon and restore network connections</Checkbox>
-          <p style={{
-          marginBottom: 4,
-          marginLeft: 22,
-          marginTop: 4
-        }}>
-            When you log onto the network, Windows verifies that each network
-            drive is ready to use.
+          <p style={{ marginTop: '12px', fontWeight: 'bold' }}>
+            Built With:
           </p>
-        </Fieldset>
+          <ul style={{ marginTop: '8px', marginBottom: '8px' }}>
+            <li>React - Interactive UI components</li>
+            <li>React95 - Authentic Windows 95 styling</li>
+            <li>p5.js - Generative art and simulations</li>
+            <li>Vite - Fast build tooling</li>
+          </ul>
+          <p style={{ fontSize: '12px', color: '#666', marginTop: '12px' }}>
+            Explore the desktop icons to discover more about my work, experiments, and creative endeavors.
+          </p>
+        </div>
       </Tab>
-      <Tab title="Compatibility">
-        <p style={{
-        marginTop: 0,
-        marginBottom: '1.6em'
-      }}>
-          If you have problems with this program and it worked correctly on an
-          earlier version of Windows, select the compatibility mode that matches
-          that earlier version.
-        </p>
-
-        <Fieldset legend="Compatibility mode" style={{
-        marginBottom: '1.6em'
-      }}>
-          <Checkbox readOnly checked>
-            Run this program in compatibility mode for:
-          </Checkbox>
-          <Dropdown style={{
-          width: 200
-        }} options={['Windows 95']} />
-        </Fieldset>
-
-        <Fieldset legend="Display Settings">
-          <Checkbox>Run in 256 colors</Checkbox>
-          <Checkbox>Run in 640 x 480 screen resolution</Checkbox>
-          <Checkbox>Disable visual themes</Checkbox>
-        </Fieldset>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>
-          Learn more about <a href="#">program compatibility.</a>
-        </p>
+      <Tab title="Apps">
+        <div style={{ padding: '10px', fontSize: '13px', lineHeight: '1.8' }}>
+          <p style={{ marginTop: 0, fontWeight: 'bold', marginBottom: '8px' }}>
+            Available Applications:
+          </p>
+          <ul style={{ marginLeft: '16px', marginTop: '0' }}>
+            <li><strong>📝 Notes</strong> - Quick note-taking</li>
+            <li><strong>🎨 Paint</strong> - Browser-based drawing tool</li>
+            <li><strong>📷 Archives</strong> - Photo gallery</li>
+            <li><strong>📄 Resume</strong> - My professional background</li>
+            <li><strong>🌌 Galaxy</strong> - Interactive star field simulation</li>
+            <li><strong>🎵 DJ Annita</strong> - Music playlist</li>
+            <li><strong>💻 Terminal</strong> - Command-line interface</li>
+            <li><strong>🔮 Tarot Draw</strong> - Three-card tarot reading</li>
+          </ul>
+        </div>
       </Tab>
     </Tabs>,
     },
@@ -158,6 +114,11 @@ export const DesktopModal = ({
         allowFullScreen
       />,
     },
+    tarot: {
+      title: 'solitarot',
+      icon: <img src={crystalBallIcon} alt="Tarot Draw" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
+      content: <TarotDraw />,
+    },
   };
 
   const config = modalConfigs[modalId] || {
@@ -167,10 +128,11 @@ export const DesktopModal = ({
   };
 
   const isFullScreen = ['archives', 'paint', 'terminal'].includes(modalId);
+  const isFixedSize = ['tarot'].includes(modalId);
 
   return (
     <Modal
-      width={isFullScreen ? '100vw' : 'auto'}
+      width={isFullScreen ? '100vw' : isFixedSize ? '700px' : 'auto'}
       height={isFullScreen ? '100vh' : 'auto'}
       style={isFullScreen ? {
         position: 'fixed',

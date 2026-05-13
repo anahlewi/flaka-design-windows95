@@ -25,7 +25,7 @@ const PhotoFolder = () => {
       id: 'tokyo',
       label: '• tokyo •',
       children: [
-        {id: 'tokyo-0', label: 'Fits', children: [
+        {id: 'tokyo-0', label: 'fits', children: [
            {id: 'fits-1', label: 'FIT_001.jpg', onClick: () => handleSelect('fits-1', 'https://cdn.cosmos.so/24a88717-7fd1-4f0d-84ae-40351a0aafc8?format=jpeg') },
            {id: 'fits-2', label: 'FIT_002.jpg', onClick: () => handleSelect('fits-2', 'https://cdn.cosmos.so/9a7b9a3c-f64d-4802-8c04-e6966ae9f1cc?format=jpeg') },
          ]},
@@ -37,16 +37,16 @@ const PhotoFolder = () => {
       id: 'wellesley',
       label: '• wellesley •',
       children: [
-        { id: 'hp5-1', label: 'BW_001.jpg', onClick: () => handleSelect('hp5-1', 'https://cdn.cosmos.so/10fe3a61-d161-4fc2-8620-0e64ae2bdd68?format=jpeg') },
-        { id: 'hp5-2', label: 'BW_002.jpg', onClick: () => handleSelect('hp5-2', 'https://cdn.cosmos.so/e3602b4f-83f8-4e9e-8ea3-e5bb962bb9f7?format=jpeg') },
+        { id: 'hp5-1', label: 'WABAN_001.jpg', onClick: () => handleSelect('hp5-1', 'https://cdn.cosmos.so/10fe3a61-d161-4fc2-8620-0e64ae2bdd68?format=jpeg') },
+        { id: 'hp5-2', label: 'TOWER_002.jpg', onClick: () => handleSelect('hp5-2', 'https://cdn.cosmos.so/e3602b4f-83f8-4e9e-8ea3-e5bb962bb9f7?format=jpeg') },
       ],
     },
     {
       id: 'Old San Juan',
       label: '• old san juan •',
       children: [
-        { id: 'old-san-juan-1', label: 'OSJ_001.jpg' },
-        { id: 'old-san-juan-2', label: 'OSJ_002.jpg' },
+        { id: 'old-san-juan-1', label: 'OSJ_001.jpg', onClick: () => handleSelect('old-san-juan-1', 'https://cdn.cosmos.so/images/dde1607c-81f7-40df-8ca3-86d4e1a46664?format=jpeg') },
+        { id: 'old-san-juan-2', label: 'OSJ_002.jpg', onClick: () => handleSelect('old-san-juan-2', 'https://cdn.cosmos.so/images/e1d1ad97-33ec-4773-bb4a-af7816cede89?format=jpeg') },
       ],
     },
   ];

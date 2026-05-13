@@ -4,6 +4,7 @@ import { Alert, List, Modal, TaskBar, TitleBar } from '@react95/core';
 import { useState } from 'react';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
+import crystalBallIcon from '../assets/crystal_ball.png';
 import '../App.css';
 import {
   ReaderClosed,
@@ -36,6 +37,7 @@ const MODAL_IDS = {
   GALAXY: 'galaxy',
   MUSIC: 'music',
   TERMINAL: 'terminal',
+  TAROT: 'tarot',
 };
 
 function Desktop(){
@@ -84,7 +86,7 @@ function Desktop(){
       <div className="desktop-icons">
         <div onDoubleClick={openLeavingSiteAlert}>
           <FilePencil variant="32x32_4" />
-          <p>note</p>
+          <p>notes</p>
         </div>
         <div onDoubleClick={() => toggleModal(MODAL_IDS.PAINT)}>
           <Pbrush1 variant="32x32_4" />
@@ -113,6 +115,10 @@ function Desktop(){
         <div onDoubleClick={() => toggleModal(MODAL_IDS.TERMINAL)}>
           <img src={terminalIcon} alt="Terminal" width={32} height={32} />
           <p>terminal</p>
+        </div>
+        <div onDoubleClick={() => toggleModal(MODAL_IDS.TAROT)}>
+          <img src={crystalBallIcon} alt="Tarot Draw" width={32} height={32} />
+          <p>solitarot</p>
         </div>
       </div>
       {alerts.leavingSite && (
@@ -210,6 +216,11 @@ function Desktop(){
         isOpen={isModalOpen(MODAL_IDS.TERMINAL)}
         modalId={MODAL_IDS.TERMINAL}
         onClose={() => closeModal(MODAL_IDS.TERMINAL)}
+      />
+      <DesktopModal
+        isOpen={isModalOpen(MODAL_IDS.TAROT)}
+        modalId={MODAL_IDS.TAROT}
+        onClose={() => closeModal(MODAL_IDS.TAROT)}
       />
 
       <WebcamModal
