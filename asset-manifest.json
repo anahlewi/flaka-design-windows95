@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/flaka-design-windows95/static/css/main.8a09ee46.css",
-    "main.js": "/flaka-design-windows95/static/js/main.4f739c38.js",
+    "main.js": "/flaka-design-windows95/static/js/main.a075def1.js",
     "static/js/48.5c2e0996.chunk.js": "/flaka-design-windows95/static/js/48.5c2e0996.chunk.js",
     "static/js/368.0c288941.chunk.js": "/flaka-design-windows95/static/js/368.0c288941.chunk.js",
     "static/js/142.4f0f0c89.chunk.js": "/flaka-design-windows95/static/js/142.4f0f0c89.chunk.js",
@@ -20,7 +20,7 @@
     "static/media/crystal_ball.png": "/flaka-design-windows95/static/media/crystal_ball.77b204a78b0d13455237.png",
     "index.html": "/flaka-design-windows95/index.html",
     "main.8a09ee46.css.map": "/flaka-design-windows95/static/css/main.8a09ee46.css.map",
-    "main.4f739c38.js.map": "/flaka-design-windows95/static/js/main.4f739c38.js.map",
+    "main.a075def1.js.map": "/flaka-design-windows95/static/js/main.a075def1.js.map",
     "48.5c2e0996.chunk.js.map": "/flaka-design-windows95/static/js/48.5c2e0996.chunk.js.map",
     "368.0c288941.chunk.js.map": "/flaka-design-windows95/static/js/368.0c288941.chunk.js.map",
     "142.4f0f0c89.chunk.js.map": "/flaka-design-windows95/static/js/142.4f0f0c89.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.8a09ee46.css",
-    "static/js/main.4f739c38.js"
+    "static/js/main.a075def1.js"
   ]
 }
