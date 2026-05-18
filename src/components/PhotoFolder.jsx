@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { Frame, Tree } from '@react95/core';
 
 const PhotoFolder = () => {
-  const [selected, setSelected] = useState(null);
   const [url, setUrl] = useState(null);
-  const [expanded, setExpanded] = useState(['root', 'kodak']);
 
   const handleSelect = (id, url) => {
-    setSelected(id);
     setUrl(url);
   }
 

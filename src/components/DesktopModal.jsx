@@ -1,8 +1,7 @@
-import { Modal, TitleBar, Tabs, Tab, Fieldset, Checkbox, Input, Dropdown } from '@react95/core';
+import { Modal, TitleBar, Tabs, Tab} from '@react95/core';
 import { P5Canvas } from "@p5-wrapper/react"; 
-import beachPhoto from '../processing-projects/photo-animaton.jsx';
 import starsSimulation from '../processing-projects/stars-simulation.jsx';
-import { FilePencil, Pbrush1, MsawtAwtIcon, Progman11, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
+import { FilePencil, Pbrush1, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
@@ -88,7 +87,7 @@ export const DesktopModal = ({
             <li><strong>🌌 Galaxy</strong> - Interactive star field simulation</li>
             <li><strong>🎵 DJ Annita</strong> - Music playlist</li>
             <li><strong>💻 Terminal</strong> - Command-line interface</li>
-            <li><strong>🔮 Tarot Draw</strong> - Three-card tarot reading</li>
+            <li><strong>🔮 Solitarot</strong> - A three-card tarot reading</li>
           </ul>
         </div>
       </Tab>

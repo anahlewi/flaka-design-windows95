@@ -1,23 +1,17 @@
 import '@react95/core/GlobalStyle';
 import '@react95/core/themes/win95.css';
-import { Alert, List, Modal, TaskBar, TitleBar } from '@react95/core';
 import { useState } from 'react';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
 import '../App.css';
 import {
-  ReaderClosed,
-  WindowsExplorer, 
   FilePencil,
   Pbrush1,
-  MsawtAwtIcon,
-  Progman11,
   Wordpad,
   Awfxcg321304,
   FlyingThroughSpace100,
   CdMusic,
-  Progman,
 } from "@react95/icons";
 
 import wallpaper3 from '../assets/wallpaper3.JPG';

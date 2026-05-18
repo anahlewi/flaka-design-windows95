@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fieldset } from '@react95/core';
 
 const s = {
   root: {
