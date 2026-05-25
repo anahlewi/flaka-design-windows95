@@ -10,14 +10,17 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@tsparticles/react": "^4.0.5",
     "face-api.js": "^0.22.2",
     "p5": "^2.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
+    "tsparticles": "^4.0.5",
+    "tsparticles-preset-confetti": "^2.12.0",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://anahlewi.github.io/flaka-design-windows95/",
+  "homepage": "https://www.flaka.design",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

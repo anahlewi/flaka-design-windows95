@@ -1,8 +1,9 @@
 import React from 'react';
-import { FilePencil, Pbrush1, MsawtAwtIcon, Progman11, Wordpad, Awfxcg321304, FlyingThroughSpace100 } from '@react95/icons';
+import { FilePencil, Pbrush1, Wordpad, Awfxcg321304, FlyingThroughSpace100 } from '@react95/icons';
 import terminalIcon from '../assets/terminal-72.png';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
+import knicksLogo from '../assets/nyknicks_logo.svg';
 
 import { List, TaskBar } from '@react95/core';
 
@@ -38,7 +39,10 @@ export const DesktopTaskBar = ({
                     terminal
                 </List.Item>
                 <List.Item onClick={() => toggleModal(MODAL_IDS.TAROT)} icon={<img src={crystalBallIcon} alt="Tarot Draw" width={32} height={32} style={{ marginLeft: -20, marginRight: 4 }} />}>
-                    tarot draw
+                    solitarot
+                </List.Item>
+                <List.Item onClick={() => toggleModal(MODAL_IDS.KNICKS)} icon={<img src={knicksLogo} alt="Knicks" width={32} height={32} style={{ marginLeft: -20, marginRight: 4 }} />}>
+                    knicks 
                 </List.Item>        
             </List>
                   }

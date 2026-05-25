@@ -1,9 +1,10 @@
 import '@react95/core/GlobalStyle';
 import '@react95/core/themes/win95.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
+import knicksLogo from '../assets/nyknicks_logo.svg';
 import '../App.css';
 import {
   FilePencil,
@@ -32,6 +33,7 @@ const MODAL_IDS = {
   MUSIC: 'music',
   TERMINAL: 'terminal',
   TAROT: 'tarot',
+  KNICKS: 'knicks',
 };
 
 function Desktop(){
@@ -52,6 +54,11 @@ function Desktop(){
       closeAlert('leavingSite');
       window.open('https://work-in-progress-blog.vercel.app/', '_blank');
     };
+
+    // Open knicks modal on page load
+    useEffect(() => {
+      toggleModal(MODAL_IDS.KNICKS);
+    }, []);
 
     return (
       <ClippyProvider>
@@ -114,6 +121,10 @@ function Desktop(){
           <img src={crystalBallIcon} alt="Tarot Draw" width={32} height={32} />
           <p>solitarot</p>
         </div>
+        <div onDoubleClick={() => toggleModal(MODAL_IDS.KNICKS)}>
+          <img src={knicksLogo} alt="Knicks" width={32} height={32} />
+          <p>knicks</p>
+        </div>
       </div>
       {alerts.leavingSite && (
         <DesktopAlert
@@ -143,7 +154,7 @@ function Desktop(){
           ]}
         />
       )}
-      {alerts.emotionalCheckin && (
+      {/* {alerts.emotionalCheckin && (
         <DesktopAlert
           title="emotional check-in"
           type="warning"
@@ -156,8 +167,8 @@ function Desktop(){
             { label: 'No', onClick: () => closeAlert('emotionalCheckin') },
           ]}
         />
-      )}
-      {alerts.hyperSurveillance && (
+      )} */}
+      {/* {alerts.hyperSurveillance && (
         <DesktopAlert
           title="hyper-surveillance"
           type="error"
@@ -169,7 +180,7 @@ function Desktop(){
             { label: 'No', onClick: () => closeAlert('hyperSurveillance') },
           ]}
         />
-      )}
+      )} */}
       {/* Render all modals based on open state */}
       <DesktopModal
         isOpen={isModalOpen(MODAL_IDS.NOTES)}
@@ -215,6 +226,11 @@ function Desktop(){
         isOpen={isModalOpen(MODAL_IDS.TAROT)}
         modalId={MODAL_IDS.TAROT}
         onClose={() => closeModal(MODAL_IDS.TAROT)}
+      />
+      <DesktopModal
+        isOpen={isModalOpen(MODAL_IDS.KNICKS)}
+        modalId={MODAL_IDS.KNICKS}
+        onClose={() => closeModal(MODAL_IDS.KNICKS)}
       />
 
       <WebcamModal

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Doto:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+    --led-color: #F58426;
+    --led-shadow: #F58426;
+    --font-family: "Doto", sans-serif;
+    --font-weight: 500;
+    --font-size: 130px;
+    --duration: 20s;
+    --matrix-density: 8px;
+    --matrix-opacity: 0.5;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+.scroller-container {
+    background: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    z-index: 1;
+}
+
+.scroller-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at center,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0) 60%);
+    background-size: var(--matrix-density) var(--matrix-density);
+    pointer-events: none;
+    opacity: var(--matrix-opacity);
+}
+
+.marquee {
+    flex: 0 0 auto;
+    width: 200%;
+    display: flex;
+    animation: scroll var(--duration, 20s) linear infinite;
+    will-change: transform;
+}
+
+.marquee-content {
+    flex: 0 0 50%;
+    white-space: nowrap;
+    padding: 0 20px;
+}
+
+.led-text {
+    color: var(--led-color);
+    font-family: var(--font-family);
+    font-optical-sizing: auto;
+    font-weight: var(--font-weight);
+    font-style: normal;
+    font-variation-settings: "ROND" 0;
+    font-size: var(--font-size, 130px);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.led-text.solid {
+    text-shadow:
+        0 0 5px var(--led-shadow),
+        0 0 10px var(--led-shadow),
+        0 0 20px var(--led-shadow);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .led-text {
+        font-size: calc(var(--font-size) * 0.7);
+    }
+}

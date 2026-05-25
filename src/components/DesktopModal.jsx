@@ -3,11 +3,13 @@ import { P5Canvas } from "@p5-wrapper/react";
 import starsSimulation from '../processing-projects/stars-simulation.jsx';
 import { FilePencil, Pbrush1, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
+import knicksLogo from '../assets/nyknicks_logo.svg';
 import terminalIcon from '../assets/terminal-72.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
 import PhotoFolder from './PhotoFolder.jsx';
 import Resume from './Resume.jsx';
 import TarotDraw from './TarotDraw.jsx';
+import LEDScoreboard from './LEDScoreboard.jsx';
 
 /**
  * Reusable modal component for desktop windows
@@ -118,6 +120,11 @@ export const DesktopModal = ({
       icon: <img src={crystalBallIcon} alt="Tarot Draw" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
       content: <TarotDraw />,
     },
+    knicks: {
+      title: 'knicks',
+      icon: <img src={knicksLogo} alt="Knicks" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
+      content: <LEDScoreboard />,
+    },
   };
 
   const config = modalConfigs[modalId] || {
@@ -126,7 +133,7 @@ export const DesktopModal = ({
     content: <div>Content not found</div>,
   };
 
-  const isFullScreen = ['archives', 'paint', 'terminal'].includes(modalId);
+  const isFullScreen = ['archives', 'paint', 'terminal', 'scoreboard'].includes(modalId);
   const isFixedSize = ['tarot'].includes(modalId);
 
   return (
