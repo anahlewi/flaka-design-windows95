@@ -1,5 +1,6 @@
 import { Modal, TitleBar, Tabs, Tab} from '@react95/core';
 import { P5Canvas } from "@p5-wrapper/react"; 
+import { useRef, useEffect, useState } from 'react';
 import starsSimulation from '../processing-projects/stars-simulation.jsx';
 import { FilePencil, Pbrush1, Wordpad, Awfxcg321304, FlyingThroughSpace100, CdMusic } from '@react95/icons';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
@@ -21,6 +22,19 @@ export const DesktopModal = ({
   onClose,
   defaultPosition = { x: 50, y: 20 },
 }) => {
+  const modalRef = useRef(null);
+  const [centerPosition, setCenterPosition] = useState({ x: 0, y: 0 });
+
+  // Measure and center knicks modal
+  useEffect(() => {
+    if (isOpen && modalId === 'knicks' && modalRef.current) {
+      const rect = modalRef.current.getBoundingClientRect();
+      const centerX = (window.innerWidth - rect.width) / 2;
+      const centerY = (window.innerHeight - rect.height) / 2;
+      setCenterPosition({ x: Math.max(0, centerX), y: Math.max(0, centerY) });
+    }
+  }, [isOpen, modalId]);
+
   if (!isOpen) return null;
 
   // Define modal configurations by type
@@ -133,12 +147,14 @@ export const DesktopModal = ({
     content: <div>Content not found</div>,
   };
 
-  const isFullScreen = ['archives', 'paint', 'terminal', 'scoreboard'].includes(modalId);
-  const isFixedSize = ['tarot'].includes(modalId);
+  const isFullScreen = ['archives', 'paint', 'terminal'].includes(modalId);
+  const isFixedSize = ['tarot', 'knicks'].includes(modalId);
+  const isKnicks = modalId === 'knicks';
 
   return (
     <Modal
-      width={isFullScreen ? '100vw' : isFixedSize ? '700px' : 'auto'}
+      ref={modalRef}
+      width={isFullScreen ? '100vw' : isFixedSize ? (isKnicks ? '90vw' : '700px') : 'auto'}
       height={isFullScreen ? '100vh' : 'auto'}
       style={isFullScreen ? {
         position: 'fixed',
@@ -147,6 +163,11 @@ export const DesktopModal = ({
         margin: 0,
         maxWidth: '100vw',
         maxHeight: '100vh',
+      } : isKnicks ? {
+        position: 'fixed',
+        left: `${centerPosition.x}px`,
+        top: `${centerPosition.y}px`,
+        margin: 0,
       } : {
         minWidth: '300px',
         maxWidth: '80vw',
@@ -156,7 +177,7 @@ export const DesktopModal = ({
       icon={config.icon}
       title={config.title}
       dragOptions={{
-        defaultPosition: isFullScreen ? { x: 0, y: 0 } : defaultPosition,
+        defaultPosition: isFullScreen ? { x: 0, y: 0 } : isKnicks ? centerPosition : defaultPosition,
       }}
       titleBarOptions={[
         <Modal.Minimize key="minimize" />,
