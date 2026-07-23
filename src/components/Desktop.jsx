@@ -1,6 +1,6 @@
 import '@react95/core/GlobalStyle';
 import '@react95/core/themes/win95.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import cameraDesktopIcon from '../assets/progman_13_32x32-1bit.png';
 import terminalIcon from '../assets/terminal-72.png';
 import crystalBallIcon from '../assets/crystal_ball.png';
@@ -21,7 +21,6 @@ import { useModalManager } from '../hooks/useModalManager';
 import { DesktopTaskBar } from './DesktopTaskBar';  
 import { DesktopModal } from './DesktopModal';
 import { DesktopAlert } from './DesktopAlert';
-import { useWebcam, WebcamModal } from './WebcamModal';
 
 const MODAL_IDS = {
   NOTES: 'notes',
@@ -34,12 +33,11 @@ const MODAL_IDS = {
   TERMINAL: 'terminal',
   TAROT: 'tarot',
   KNICKS: 'knicks',
+  AFFIRMATIONS_WEBCAM: 'affirmationsWebcam',
 };
 
-function Desktop(){
+function Desktop({ onKnicksIconClick }){
     const { toggleModal, isModalOpen, closeModal } = useModalManager();
-
-    const { webcamOpen, webcamStream, openWebcam, closeWebcam } = useWebcam();
 
     const [alerts, setAlerts] = useState({
       emotionalCheckin: true,
@@ -55,10 +53,15 @@ function Desktop(){
       window.open('https://work-in-progress-blog.vercel.app/', '_blank');
     };
 
-    // Open knicks modal on page load
-    useEffect(() => {
+    const openKnicks = () => {
       toggleModal(MODAL_IDS.KNICKS);
-    }, []);
+      onKnicksIconClick?.();
+    };
+
+    const openAffirmationsWebcam = () => {
+      closeAlert('hyperSurveillance');
+      toggleModal(MODAL_IDS.AFFIRMATIONS_WEBCAM);
+    };
 
     return (
       <ClippyProvider>
@@ -121,7 +124,7 @@ function Desktop(){
           <img src={crystalBallIcon} alt="Tarot Draw" width={32} height={32} />
           <p>solitarot</p>
         </div>
-        <div onDoubleClick={() => toggleModal(MODAL_IDS.KNICKS)}>
+        <div onDoubleClick={openKnicks}>
           <img src={knicksLogo} alt="Knicks" width={32} height={32} />
           <p>knicks</p>
         </div>
@@ -154,7 +157,7 @@ function Desktop(){
           ]}
         />
       )}
-      {/* {alerts.emotionalCheckin && (
+      {alerts.emotionalCheckin && (
         <DesktopAlert
           title="emotional check-in"
           type="warning"
@@ -167,8 +170,8 @@ function Desktop(){
             { label: 'No', onClick: () => closeAlert('emotionalCheckin') },
           ]}
         />
-      )} */}
-      {/* {alerts.hyperSurveillance && (
+      )}
+      {alerts.hyperSurveillance && (
         <DesktopAlert
           title="hyper-surveillance"
           type="error"
@@ -176,11 +179,11 @@ function Desktop(){
           position={{ x: 300, y: 500 }}
           onClose={() => closeAlert('hyperSurveillance')}
           buttons={[
-            { label: 'Yes', onClick: openWebcam },
+            { label: 'Yes', onClick: openAffirmationsWebcam },
             { label: 'No', onClick: () => closeAlert('hyperSurveillance') },
           ]}
         />
-      )} */}
+      )}
       {/* Render all modals based on open state */}
       <DesktopModal
         isOpen={isModalOpen(MODAL_IDS.NOTES)}
@@ -232,11 +235,10 @@ function Desktop(){
         modalId={MODAL_IDS.KNICKS}
         onClose={() => closeModal(MODAL_IDS.KNICKS)}
       />
-
-      <WebcamModal
-        webcamOpen={webcamOpen}
-        webcamStream={webcamStream}
-        onClose={closeWebcam}
+      <DesktopModal
+        isOpen={isModalOpen(MODAL_IDS.AFFIRMATIONS_WEBCAM)}
+        modalId={MODAL_IDS.AFFIRMATIONS_WEBCAM}
+        onClose={() => closeModal(MODAL_IDS.AFFIRMATIONS_WEBCAM)}
       />
       </ClippyProvider>
   );

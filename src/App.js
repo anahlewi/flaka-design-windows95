@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Desktop from './components/Desktop';
 import Confetti from './components/Confetti';
 import './App.css';
@@ -8,13 +8,13 @@ import './App.css';
 function App() {
   const [showConfetti, setShowConfetti] = useState(false);
 
-  useEffect(() => {
+  const handleKnicksIconClick = () => {
     setShowConfetti(true);
-  }, []);
+  };
 
   return (
       <>
-        <Desktop />
+        <Desktop onKnicksIconClick={handleKnicksIconClick} />
         {showConfetti && (
           <Confetti 
             autoPlay={true} 

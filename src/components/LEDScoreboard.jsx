@@ -9,12 +9,12 @@ const LEDScoreboard = () => {
         <div className="marquee">
           <div className="marquee-content">
             <div className="led-text solid">
-              NEW YORK KNICKS 2026 ECF CHAMPIONS
+              NEW YORK KNICKS 2026 NBA CHAMPIONS
             </div>
           </div>
           <div className="marquee-content">
             <div className="led-text solid">
-              NEW YORK KNICKS 2026 ECF CHAMPIONS
+              NEW YORK KNICKS 2026 WORLD CHAMPIONS
             </div>
           </div>
         </div>

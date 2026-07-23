@@ -123,9 +123,20 @@ export const DesktopModal = ({
       title: 'terminal',
       icon: <img src={terminalIcon} alt="Terminal" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
       content: <iframe
-        src="https://anahlewi.github.io/personal-website-term/"
+        src="https://anahlewi.github.io/anahesty-terminal/"
         title="Terminal"
         style={{ width: '100%', height: '100%', minHeight: '500px', border: 'none', display: 'block' }}
+        allowFullScreen
+      />,
+    },
+    affirmationsWebcam: {
+      title: 'affirmations webcam',
+      icon: <img src={cameraDesktopIcon} alt="Affirmations Webcam" style={{ width: 16, height: 16, display: 'block', marginRight: 4 }} />,
+      content: <iframe
+        src="https://anahlewi.github.io/affirmations-webcam/"
+        title="Affirmations Webcam"
+        style={{ width: '100%', height: '100%', minHeight: '500px', border: 'none', display: 'block' }}
+        allow="camera; microphone; autoplay; fullscreen"
         allowFullScreen
       />,
     },
@@ -147,7 +158,7 @@ export const DesktopModal = ({
     content: <div>Content not found</div>,
   };
 
-  const isFullScreen = ['archives', 'paint', 'terminal'].includes(modalId);
+  const isFullScreen = ['archives', 'paint', 'terminal', 'affirmationsWebcam'].includes(modalId);
   const isFixedSize = ['tarot', 'knicks'].includes(modalId);
   const isKnicks = modalId === 'knicks';
 
