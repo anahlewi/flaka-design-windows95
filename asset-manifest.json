@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.10efba16.css",
-    "main.js": "/static/js/main.3e8969d9.js",
+    "main.js": "/static/js/main.1489f9d3.js",
     "static/js/48.5c2e0996.chunk.js": "/static/js/48.5c2e0996.chunk.js",
     "static/js/368.0c288941.chunk.js": "/static/js/368.0c288941.chunk.js",
     "static/js/142.4f0f0c89.chunk.js": "/static/js/142.4f0f0c89.chunk.js",
@@ -21,7 +21,7 @@
     "static/media/nyknicks_logo.svg": "/static/media/nyknicks_logo.7d41535b97dec829a37575d8802f71d0.svg",
     "index.html": "/index.html",
     "main.10efba16.css.map": "/static/css/main.10efba16.css.map",
-    "main.3e8969d9.js.map": "/static/js/main.3e8969d9.js.map",
+    "main.1489f9d3.js.map": "/static/js/main.1489f9d3.js.map",
     "48.5c2e0996.chunk.js.map": "/static/js/48.5c2e0996.chunk.js.map",
     "368.0c288941.chunk.js.map": "/static/js/368.0c288941.chunk.js.map",
     "142.4f0f0c89.chunk.js.map": "/static/js/142.4f0f0c89.chunk.js.map",
@@ -39,6 +39,6 @@
   },
   "entrypoints": [
     "static/css/main.10efba16.css",
-    "static/js/main.3e8969d9.js"
+    "static/js/main.1489f9d3.js"
   ]
 }
