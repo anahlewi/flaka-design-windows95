@@ -15,7 +15,6 @@ import {
   CdMusic,
 } from "@react95/icons";
 
-import wallpaper3 from '../assets/wallpaper3.JPG';
 import { ClippyProvider } from '@react95/clippy';
 import { useModalManager } from '../hooks/useModalManager';
 import { DesktopTaskBar } from './DesktopTaskBar';  
@@ -68,7 +67,8 @@ function Desktop({ onKnicksIconClick }){
          <div 
           id="background-image"
           style={{
-            backgroundImage: `url(${wallpaper3})`,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/wallpaper.jpg)`,
+            backgroundColor: '#8fa3ad',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
